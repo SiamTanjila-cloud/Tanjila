@@ -34,6 +34,7 @@
 
         body, html {
             width: 100vw;
+            min-height: 100vh;
             overflow-x: hidden;
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, var(--bg-top), var(--bg-mid), var(--bg-bottom));
@@ -55,25 +56,29 @@
 
         .moon {
             position: fixed;
-            top: 40px; right: 40px;
-            width: 70px; height: 70px;
+            top: 5vh; right: 5vw;
+            width: clamp(50px, 10vw, 80px); 
+            height: clamp(50px, 10vw, 80px);
             border-radius: 50%;
             box-shadow: 15px 15px 0 0 #fffde8;
             z-index: 1;
             animation: floatMoon 4s ease-in-out infinite alternate;
             opacity: 0.8;
+            will-change: transform;
         }
 
         /* Floating Fireflies */
         .firefly {
             position: fixed;
-            width: 4px; height: 4px;
+            width: clamp(3px, 0.5vw, 5px); 
+            height: clamp(3px, 0.5vw, 5px);
             background: var(--gold);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
             animation: fireflyFloat 10s infinite linear;
             z-index: 1;
             opacity: 0;
+            will-change: transform, opacity;
         }
 
         /* === INTRO SCREEN === */
@@ -88,6 +93,15 @@
             justify-content: center;
             z-index: 10000;
             transition: opacity 1s ease-out;
+            padding: 20px;
+        }
+
+        .intro-title {
+            font-family: 'Great Vibes', cursive; 
+            font-size: clamp(2.5rem, 8vw, 4rem); 
+            color: white; 
+            text-align: center; 
+            margin-bottom: 30px;
         }
 
         .tap-btn {
@@ -96,15 +110,15 @@
             padding: 15px 40px;
             border-radius: 30px;
             color: white;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 4vw, 1.2rem);
             font-family: 'Montserrat', sans-serif;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 42, 133, 0.5);
             animation: pulseGlow 2s infinite;
-            margin-top: 20px;
             transition: 0.3s;
+            touch-action: manipulation;
         }
-        .tap-btn:hover { background: var(--primary); transform: scale(1.05); }
+        .tap-btn:hover, .tap-btn:active { background: var(--primary); transform: scale(1.05); }
 
         /* === MAIN CONTENT === */
         #main-content {
@@ -116,11 +130,13 @@
 
         #music-btn {
             position: fixed;
-            bottom: 30px; right: 30px;
+            bottom: clamp(20px, 4vw, 30px); 
+            right: clamp(20px, 4vw, 30px);
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            width: 50px; height: 50px;
+            width: clamp(45px, 10vw, 55px); 
+            height: clamp(45px, 10vw, 55px);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -132,7 +148,7 @@
             transition: 0.3s;
             box-shadow: 0 0 15px rgba(255,255,255,0.1);
         }
-        #music-btn:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); transform: scale(1.1); }
+        #music-btn:active, #music-btn:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); transform: scale(1.1); }
 
         /* === SECTIONS === */
         section {
@@ -141,7 +157,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px 20px;
+            padding: clamp(40px, 8vw, 60px) 20px;
             text-align: center;
             position: relative;
             opacity: 0;
@@ -152,7 +168,7 @@
 
         /* === WELCOME SECTION === */
         .title-small {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             letter-spacing: 3px;
             color: #ff99cc;
             text-transform: uppercase;
@@ -160,7 +176,7 @@
         }
         .name {
             font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
+            font-size: clamp(3.8rem, 10vw, 6.5rem);
             color: #fff;
             text-shadow: 0 0 15px var(--primary), 0 0 30px var(--secondary);
             margin-bottom: 20px;
@@ -169,9 +185,9 @@
         }
         .typing-container {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: #f8c8d8;
-            height: 40px;
+            height: 50px;
             margin-bottom: 40px;
         }
         .scroll-indicator {
@@ -185,7 +201,7 @@
         /* === LOVE COUNTER SECTION === */
         .counter-container {
             display: flex;
-            gap: 15px;
+            gap: clamp(10px, 2vw, 20px);
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 30px;
@@ -194,29 +210,29 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: clamp(15px, 3vw, 25px);
             border-radius: 15px;
-            min-width: 100px;
+            min-width: clamp(80px, 15vw, 120px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .counter-number {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: bold;
             color: var(--gold);
             font-family: 'Dancing Script', cursive;
         }
         .counter-label {
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 1rem);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 5px;
             color: #e0e0e0;
         }
 
-        /* === 3D BOOK GALLERY (FIXED FOR MOBILE) === */
+        /* === 3D BOOK GALLERY (FLUID RESPONSIVE) === */
         .gallery-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
+            font-size: clamp(2.8rem, 6vw, 4rem);
             color: #fff;
             margin-bottom: 40px;
             text-shadow: 0 0 15px rgba(255,255,255,0.5);
@@ -232,22 +248,20 @@
 
         .book-container {
             perspective: 1500px;
-            width: 65vw; /* Adjusted for mobile */
-            max-width: 320px;
+            /* Adaptive width: takes 45% of viewport, but maxes out at 350px */
+            width: 45vw; 
+            max-width: 350px;
+            /* Ensures book fits perfectly without overlapping screen edges on mobile */
+            min-width: 140px; 
             aspect-ratio: 3/4;
             position: relative;
             transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            will-change: transform;
         }
 
-        /* Shifts slightly on mobile so it doesn't leave the screen */
+        /* Mathematically perfectly centers the book when opened (2x width shifted by 50%) */
         .book-container.open {
-            transform: translateX(15vw) scale(0.85); 
-        }
-
-        /* Desktop logic */
-        @media (min-width: 768px) {
-            .book-container { width: 30vw; max-width: 350px; }
-            .book-container.open { transform: translateX(15vw) scale(1); }
+            transform: translateX(50%); 
         }
 
         .book-page {
@@ -260,6 +274,7 @@
             cursor: pointer;
             border-radius: 5px 15px 15px 5px;
             box-shadow: inset 4px 0 10px rgba(0,0,0,0.1), 5px 5px 20px rgba(0,0,0,0.6);
+            touch-action: manipulation;
         }
         
         .page-front, .page-back {
@@ -287,21 +302,23 @@
             opacity: 0.95;
             transition: 0.5s;
         }
-        .book-page:hover img { opacity: 1; transform: scale(1.04); }
+        @media (hover: hover) {
+            .book-page:hover img { opacity: 1; transform: scale(1.04); }
+        }
         
         .page-text {
             position: absolute;
             bottom: 25px;
             background: rgba(0,0,0,0.65);
             backdrop-filter: blur(8px);
-            padding: 10px 25px;
+            padding: clamp(6px, 1.5vw, 10px) clamp(10px, 3vw, 25px);
             border-radius: 25px;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             color: white;
             text-align: center;
             pointer-events: none;
-            width: 80%;
+            width: 85%;
         }
         .flipped { transform: rotateY(-180deg); }
 
@@ -310,34 +327,36 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: clamp(15px, 4vw, 30px);
             max-width: 900px;
             margin-top: 30px;
         }
         .polaroid {
             background: #fff;
-            padding: 10px 10px 25px 10px;
+            padding: clamp(8px, 2vw, 12px);
+            padding-bottom: clamp(20px, 4vw, 30px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            transition: transform 0.4s ease, z-index 0s;
+            transition: transform 0.4s ease, z-index 0s, box-shadow 0.4s ease;
             cursor: pointer;
-            width: 200px;
+            width: clamp(140px, 40vw, 220px);
             position: relative;
+            will-change: transform;
         }
         .polaroid img {
             width: 100%;
-            height: 200px;
+            height: clamp(140px, 40vw, 220px);
             object-fit: cover;
         }
         .polaroid-text {
             font-family: 'Dancing Script', cursive;
             color: #333;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
             margin-top: 10px;
             font-weight: bold;
         }
-        .polaroid:nth-child(even) { transform: rotate(5deg); }
-        .polaroid:nth-child(odd) { transform: rotate(-5deg); }
-        .polaroid:hover {
+        .polaroid:nth-child(even) { transform: rotate(4deg); }
+        .polaroid:nth-child(odd) { transform: rotate(-4deg); }
+        .polaroid:hover, .polaroid:active {
             transform: scale(1.1) rotate(0deg);
             z-index: 100;
             box-shadow: 0 15px 30px var(--primary);
@@ -348,14 +367,14 @@
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 45px 35px;
+            padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 40px);
             border-radius: 20px;
             max-width: 800px;
-            width: 90%;
+            width: 95%;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
-            text-align: justify;
+            text-align: left; /* Better readability on mobile */
         }
         .glass-card::before {
             content: '';
@@ -367,11 +386,10 @@
             z-index: -1;
         }
         .romantic-text {
-            font-size: 1.15rem;
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
             line-height: 1.8;
             margin-bottom: 20px;
             color: #e0e0e0;
-            text-align: justify;
             word-spacing: 2px;
         }
         .typing-cursor::after {
@@ -383,17 +401,18 @@
 
         /* === SURPRISE SECTION === */
         .gift-box {
-            font-size: 6rem;
+            font-size: clamp(5rem, 15vw, 8rem);
             cursor: pointer;
             animation: bounce 2s infinite;
             filter: drop-shadow(0 0 20px var(--primary));
             margin: 30px 0;
             transition: transform 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
-        .gift-box:active { transform: scale(0.9); }
+        .gift-box:active { transform: scale(0.85); }
         .tap-text {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: #fff;
             animation: pulseGlow 2s infinite;
         }
@@ -406,11 +425,11 @@
             text-align: center;
             z-index: 100000;
             display: none;
-            width: 90%;
+            width: 95%;
         }
         .happy-bday-text {
             font-family: 'Great Vibes', cursive;
-            font-size: 6rem;
+            font-size: clamp(4rem, 12vw, 8rem);
             color: #fff;
             text-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary), 0 0 60px var(--secondary);
             line-height: 1.2;
@@ -419,10 +438,10 @@
         }
         .final-subtext {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
             color: #fff;
             background: rgba(255,255,255,0.15);
-            padding: 15px 30px;
+            padding: clamp(10px, 3vw, 20px) clamp(20px, 5vw, 40px);
             border-radius: 30px;
             backdrop-filter: blur(10px);
             display: inline-block;
@@ -432,7 +451,7 @@
 
         .click-heart {
             position: fixed;
-            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             pointer-events: none;
             animation: floatUpFade 1.2s ease-out forwards;
             z-index: 99999;
@@ -454,21 +473,6 @@
             80% { opacity: 1; }
             100% { transform: translate(calc(100vw * var(--x)), calc(-100vh * var(--y))); opacity: 0; }
         }
-
-        /* === RESPONSIVE FOR MOBILE === */
-        @media (max-width: 600px) {
-            .name { font-size: 3.8rem; }
-            .gallery-title { font-size: 2.8rem; }
-            .happy-bday-text { font-size: 4rem; }
-            .glass-card { padding: 30px 20px; }
-            .page-text { font-size: 1.1rem; padding: 8px 15px; width: 90%; }
-            .counter-box { min-width: 70px; padding: 10px; }
-            .counter-number { font-size: 1.8rem; }
-            .counter-label { font-size: 0.7rem; }
-            .polaroid { width: 140px; }
-            .polaroid img { height: 140px; }
-            .polaroid-text { font-size: 1.2rem; }
-        }
     </style>
 </head>
 <body>
@@ -485,7 +489,7 @@
 
     <!-- Intro Screen -->
     <div id="intro-screen">
-        <h2 style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: white; text-align: center; margin-bottom: 20px;">A magical universe awaits you...</h2>
+        <h2 class="intro-title">A magical universe awaits you...</h2>
         <button class="tap-btn" onclick="startExperience()">Open the Magic ✨</button>
     </div>
 
@@ -528,7 +532,7 @@
                     <div class="counter-label">Seconds</div>
                 </div>
             </div>
-            <p style="margin-top: 20px; color: #ccc; font-style: italic;">...and an eternity left to go.</p>
+            <p style="margin-top: 25px; color: #ccc; font-style: italic; font-size: clamp(0.9rem, 2vw, 1.1rem);">...and an eternity left to go.</p>
         </section>
 
         <!-- 3D Book Gallery -->
@@ -582,7 +586,7 @@
                     </div>
                 </div>
             </div>
-            <p style="margin-top: 20px; color: #ccc; font-weight: 300;">Tap the picture to flip the pages 📖</p>
+            <p style="margin-top: 30px; color: #ccc; font-weight: 300; font-size: clamp(0.9rem, 2vw, 1.1rem);">Tap the picture to flip the pages 📖</p>
         </section>
 
         <!-- Polaroid Section -->
@@ -602,21 +606,21 @@
                     <div class="polaroid-text">Just Us ❤️</div>
                 </div>
             </div>
-            <p style="margin-top: 30px; color: #ccc;">(Tap or hover on pictures)</p>
+            <p style="margin-top: 35px; color: #ccc; font-size: clamp(0.9rem, 2vw, 1.1rem);">(Tap or hover on pictures)</p>
         </section>
 
         <!-- Dynamic Typing Message Section -->
         <section id="message">
             <div class="glass-card">
-                <h2 style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); margin-bottom: 25px; text-align: center;">My Dearest Tanjila,</h2>
+                <h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--gold); margin-bottom: 25px; text-align: center;">My Dearest Tanjila,</h2>
                 <div id="message-container"></div>
-                <h3 id="yours-forever" style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--primary); margin-top: 25px; text-align: center; opacity: 0; transition: opacity 1.5s ease;">Yours Forever ❤️</h3>
+                <h3 id="yours-forever" style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 5vw, 2.5rem); color: var(--primary); margin-top: 25px; text-align: center; opacity: 0; transition: opacity 1.5s ease;">Yours Forever ❤️</h3>
             </div>
         </section>
 
         <!-- Surprise Reveal Section -->
         <section id="surprise">
-            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.5rem; color: white;">I have one last thing for you...</h2>
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: clamp(1.2rem, 4vw, 1.5rem); color: white;">I have one last thing for you...</h2>
             <div class="gift-box" onclick="revealSurprise()">🎁</div>
             <div class="tap-text">Tap to open</div>
         </section>
@@ -644,8 +648,12 @@
                 musicBtn.style.display = "flex";
                 
                 bgMusic.volume = 0.5;
-                bgMusic.play().catch(e => console.log("Audio blocked"));
-                isPlaying = true;
+                // Ensures playback works on strict mobile browsers
+                let playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => isPlaying = true)
+                    .catch(e => console.log("Audio blocked by browser auto-play policy"));
+                }
 
                 startIntroTyping();
                 createFireflies();
@@ -666,7 +674,8 @@
         // --- Fireflies Background ---
         function createFireflies() {
             const container = document.getElementById('fireflies-container');
-            for(let i=0; i<30; i++) {
+            const fireflyCount = window.innerWidth < 768 ? 15 : 30; // Reduce DOM nodes on mobile
+            for(let i=0; i<fireflyCount; i++) {
                 let firefly = document.createElement('div');
                 firefly.className = 'firefly';
                 firefly.style.left = Math.random() * 100 + 'vw';
@@ -680,7 +689,6 @@
         }
 
         // --- Time Together Counter ---
-        // Edit this date below to the day you met/started dating (Format: YYYY-MM-DDTHH:MM:SS)
         const startDate = new Date("2022-01-01T00:00:00").getTime(); 
 
         function updateCounter() {
@@ -725,7 +733,13 @@
 
         // --- 3D Book Page Turn ---
         const bookContainer = document.getElementById('book');
+        let isTurning = false;
+
         function turnPage(pageElement, openZIndex, closeZIndex) {
+            // Prevent multiple rapid clicks from breaking the z-index logic
+            if (isTurning) return; 
+            isTurning = true;
+
             if (pageElement.classList.contains("flipped")) {
                 pageElement.classList.remove("flipped");
                 setTimeout(() => pageElement.style.zIndex = openZIndex, 600); 
@@ -733,11 +747,13 @@
                 pageElement.classList.add("flipped");
                 setTimeout(() => pageElement.style.zIndex = closeZIndex, 600);
             }
+            
             setTimeout(() => {
                 const anyFlipped = document.querySelectorAll('.flipped').length > 0;
                 if(anyFlipped) bookContainer.classList.add('open');
                 else bookContainer.classList.remove('open');
-            }, 100);
+                isTurning = false;
+            }, 1000);
         }
 
         // --- Main Text Typing ---
@@ -787,11 +803,11 @@
                     }
                 }
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 }); // Lowered threshold slightly for better mobile triggering
         sections.forEach(sec => observer.observe(sec));
 
-        // --- Interactive Click Hearts ---
-        document.addEventListener("click", function(e) {
+        // --- Interactive Click Hearts (Pointerdown for zero touch delay) ---
+        document.addEventListener("pointerdown", function(e) {
             if(e.target.closest('button') || e.target.closest('.gift-box') || e.target.closest('.book-page') || e.target.closest('.polaroid')) return;
             const heart = document.createElement("div");
             const icons = ['💖', '✨', '🌸', '💫'];
@@ -806,12 +822,25 @@
         const canvasStars = document.getElementById('starsCanvas');
         const ctxStars = canvasStars.getContext('2d');
         let stars = [];
+        
         function initStars() {
             canvasStars.width = window.innerWidth; canvasStars.height = window.innerHeight;
             stars = [];
-            for (let i = 0; i < 150; i++) stars.push({ x: Math.random() * canvasStars.width, y: Math.random() * canvasStars.height, size: Math.random() * 1.5, speed: Math.random() * 0.5 + 0.1, opacity: Math.random(), fadeDir: Math.random() > 0.5 ? 1 : -1 });
+            // Scale amount of stars by screen size to save mobile battery
+            const starCount = window.innerWidth < 768 ? 70 : 150;
+            for (let i = 0; i < starCount; i++) {
+                stars.push({ x: Math.random() * canvasStars.width, y: Math.random() * canvasStars.height, size: Math.random() * 1.5, speed: Math.random() * 0.5 + 0.1, opacity: Math.random(), fadeDir: Math.random() > 0.5 ? 1 : -1 });
+            }
         }
-        window.addEventListener('resize', initStars); initStars();
+        
+        // Debounce resize to prevent layout thrashing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(initStars, 200);
+        }); 
+        initStars();
+
         function animateStars() {
             ctxStars.clearRect(0, 0, canvasStars.width, canvasStars.height);
             stars.forEach(star => {
@@ -831,13 +860,16 @@
         const canvasFW = document.getElementById('fireworksCanvas');
         const ctxFW = canvasFW.getContext('2d');
         let fwParticles = [], fireworks = [], fireworksActive = false;
-        function resizeFW() { canvasFW.width = window.innerWidth; canvasFW.height = window.innerHeight; }
+        
+        function resizeFW() { 
+            canvasFW.width = window.innerWidth; canvasFW.height = window.innerHeight; 
+        }
         window.addEventListener('resize', resizeFW); resizeFW();
 
         function revealSurprise() {
             const mainContent = document.getElementById('main-content');
             mainContent.style.transition = "opacity 1.5s ease"; mainContent.style.opacity = "0";
-            if(navigator.vibrate) navigator.vibrate(200);
+            if(navigator.vibrate) navigator.vibrate([100, 50, 100]); // Mobile tactile feedback
 
             setTimeout(() => {
                 mainContent.style.display = "none";
@@ -859,7 +891,10 @@
             }
             update() { this.y -= this.speed; if (this.y <= this.targetY) { this.exploded = true; this.explode(); } }
             draw() { if (!this.exploded) { ctxFW.fillStyle = this.color; ctxFW.beginPath(); ctxFW.arc(this.x, this.y, 2, 0, Math.PI * 2); ctxFW.fill(); } }
-            explode() { for (let i = 0; i < 60; i++) fwParticles.push(new FWParticle(this.x, this.y, this.color)); }
+            explode() { 
+                const partCount = window.innerWidth < 768 ? 30 : 60; // Less particles on mobile
+                for (let i = 0; i < partCount; i++) fwParticles.push(new FWParticle(this.x, this.y, this.color)); 
+            }
         }
 
         class FWParticle {
