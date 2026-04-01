@@ -2566,11 +2566,11 @@
 
         // --- Main Text Typing ---
         const romanticTexts = [
-            "From the moment you came into my life, everything changed in the most beautiful way. You became my peace in chaos, my light in darkness, and the reason behind my happiest smiles. Tanjila, you are truly the most precious part of my world.",
+            "Happy Birthday, Tanjila 🎉 Today is the most special day for me, because it gave me you. You are the reason behind my smiles, my peace when everything feels heavy, and the most beautiful part of my life that I never want to lose.",
 
-            "Today isn’t just a special day, it’s the day my favorite person was born. You make every ordinary moment feel magical, and your smile has the power to brighten even my darkest days. Being with you feels like living inside a dream I never want to end.",
+            "I don’t just celebrate your birthday, I celebrate your existence. The way you talk, your smile, your little things—everything about you makes my world brighter. You turned my ordinary life into something magical without even trying.",
 
-            "On your birthday, I just want you to know how deeply I love you. No matter what life brings, I’ll always stand by your side, hold your hand, and write our story together, page by page. You are my forever, Tanjila."
+            "On this day, I promise you something from my heart—I will always be there for you, in every moment, good or bad. I’ll stand beside you, support you, and love you more with each passing day. You are not just someone I love, you are my everything ❤️"
         ];
 
         let msgIndex = 0, mainCharIdx = 0, isMainTextTyped = false;
@@ -2620,7 +2620,7 @@
         document.addEventListener("pointerdown", function (e) {
             if (e.target.closest('button') || e.target.closest('.gift-box') || e.target.closest('.book-page') || e.target.closest('.polaroid')) return;
             const heart = document.createElement("div");
-            const icons = ['love you Too much💖', 'Happy Birthday ✨', 'You are my everything 🌸', 'You are the best💫', 'My forever ❤️', 'My sunshine ☀️', 'My queen 👑', 'My heartbeat 💓', 'Always yours 💞', 'Endless love 💘'];            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            const icons = ['love you Too much💖', 'Happy Birthday ✨', 'You are my everything 🌸', 'You are the best💫', 'My forever ❤️', 'My sunshine ☀️', 'My queen 👑', 'My heartbeat 💓', 'Always yours 💞', 'Endless love 💘']; heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
             heart.classList.add("click-heart");
             heart.style.left = `${e.clientX - 15}px`; heart.style.top = `${e.clientY - 15}px`;
             document.body.appendChild(heart);
